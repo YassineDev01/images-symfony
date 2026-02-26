@@ -1,0 +1,13 @@
+{{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+
+    {{ form_row(form.name) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.isActive) }}
+    {{ form_row(form.stock) }}
+    {{ form_row(form.imagesFiles) }}
+
+    <button class="btn btn-success">
+        {{ button_label|default('Save') }}
+    </button>
+
+{{ form_end(form) }}

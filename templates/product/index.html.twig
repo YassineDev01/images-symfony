@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product index{% endblock %}
+
+{% block body %}
+    <h1>Product index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Is_active</th>
+                <th>Stock</th>
+                <th>category</th>
+                <th>Images
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.isActive ? 'Yes' : 'No' }}</td>
+                <td>{{ product.stock ? 'Yes' : 'No' }}</td>
+                <td>
+                    {% if product.category %}
+                        {{ product.category.nameCategory }}
+                    {% else %}
+                        No category
+                    {% endif %}
+                </td>
+                <td>
+                    {% for image in product.productImages %}
+                        {% if image.imageName %}
+                            <img src="{{ asset('uploads/products/' ~ image.imageName) }}"
+                                width="80"
+                        {% else %}
+                            <span class="text-muted">No image</span>
+                        {% endif %}      
+                    {% endfor %}
+                </td>
+
+                <td>
+                    <a class="btn btn-secondary" href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
+                    <a class="btn btn-warning" href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
+                    <a class="btn btn-danger" href="{{ path('app_product_delete', {'id': product.id}) }}"
+                       onclick="return confirm('Are you sure you want to delete this item?');">
+                        delete
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_product_new') }}">Create new</a>
+{% endblock %}
