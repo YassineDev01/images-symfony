@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block body %}
+    <h1>Home</h1>
+    <div class="alert alert-info">
+        Nombre de produits :<span class="fs-5" > {{ products|length }} </span>
+    </div>
+    <div class="alert alert-info">
+        Nombre de categories :<span class="fs-5" > {{ category|length }} </span>
+    </div>
+    
+        
+{% endblock %}
+

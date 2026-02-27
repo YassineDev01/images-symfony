@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm py-3 mb-">
     <div class="container-fluid">
 
-        <a class="navbar-brand" href="{{ path('app_product_index') }}">Produits</a>
+        <a class="navbar-brand" href="{{ path('app_home') }}">Produits</a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarNav">
@@ -12,10 +12,21 @@
 
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_home') }}">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_product_index') }}">
                         Produits
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_category_index') }}">
+                        Caregories
+                    </a>
+                </li>
+                
             </ul>
 
             <ul class="navbar-nav">
