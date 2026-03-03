@@ -58,20 +58,20 @@ class AppFixtures extends Fixture
         $category1 = new Category();
         $category1->setNameCategory('Plat');
         $category1->setDescriptionCategory('Delicious dishes');
-        $category1->setImageName('plat.png');
+        $category1->setImageName('plat.jpg');
         $category1->setUpdatedAt(new \DateTimeImmutable());
         $manager->persist($category1);
 
         $category2 = new Category();
         $category2->setNameCategory('Entrer');
         $category2->setDescriptionCategory('Delicious dishes');
-        $category2->setImageName('entrer.png');
+        $category2->setImageName('entrer.jpg');
         $manager->persist($category2);
 
         $category3 = new Category();
         $category3->setNameCategory('Dessert');
         $category3->setDescriptionCategory('Delicious dishes');
-        $category3->setImageName('dessert.png');
+        $category3->setImageName('dessert.jpg');
         $manager->persist($category3);
 
         $category4 = new Category();

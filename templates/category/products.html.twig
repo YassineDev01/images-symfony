@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Plats{% endblock %}
+{% block title %}Products{% endblock %}
 
 {% block body %}
+
 <div class="container mt-4">
 
-    <h1 class=" mb-4 fw-bold text-center border-bottom pb-3 bg-light py-2 rounded shadow-sm">
-        Nos Plats
+    <h1 class="mb-4 fw-bold">
+        {{ category.nameCategory }}
     </h1>
 
     <div class="row">
@@ -15,12 +16,9 @@
 
             <div class="col-md-4 mb-4">
 
-                
-            <a href="{{ path('app_product_show', {'id': product.id}) }}"
-                    class="text-decoration-none text-dark">
-                <div class="card shadow-sm h-100 ">
+                <div class="card shadow-sm h-100">
 
-                    {# Première image #}
+                    {# Première image du produit #}
                     {% set firstImage = product.productImages|first %}
 
                     {% if firstImage and firstImage.imageName %}
@@ -44,31 +42,19 @@
                         </h5>
 
                         <p class="text-muted">
-                            {{ product.description
-                                ? product.description|slice(0,80) ~ '...'
-                                : '' }}
+                            {{ product.description ? product.description|slice(0,80) ~ '...' : '' }}
                         </p>
-
-                        {# Afficher la catégorie #}
-                        {% if product.category %}
-                            <p class="badge bg-primary">
-                                {{ product.category.nameCategory }}
-                            </p>
-                        {% endif %}
 
                     </div>
 
                 </div>
-            </a>
 
             </div>
 
-
         {% else %}
 
-
-            <div class="col-12 text-center">
-                <p>Aucun produit disponible.</p>
+            <div class="col-12">
+                <p class="text-center">Aucun produit dans cette catégorie.</p>
             </div>
 
         {% endfor %}
@@ -76,4 +62,5 @@
     </div>
 
 </div>
+
 {% endblock %}

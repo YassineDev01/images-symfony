@@ -18,7 +18,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_product_index') }}">
-                        Produits
+                        Plats
                     </a>
                 </li>
                 <li class="nav-item">
@@ -32,12 +32,28 @@
             <ul class="navbar-nav">
 
                 {% if app.user %}
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+        </ul>
+
 
                     <li class="nav-item">
                         <span class="nav-link">
                             Bonjour {{ app.user.email }}
                         </span>
                     </li>
+
+                    {% if 'ROLE_ADMIN' in app.user.roles %}
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-warning text-white me-2 bg-warning"
+                            href="{{ path('admin') }}">
+                                Dashboard
+                            </a>
+                        </li>
+                        
+                    {% endif %}
 
                     <li class="nav-item">
                         <a class="nav-link btn btn-danger text-white ms-2 bg-danger"

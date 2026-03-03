@@ -16,6 +16,8 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
+
+
     //    /**
     //     * @return Product[] Returns an array of Product objects
     //     */
@@ -40,4 +42,15 @@ class ProductRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+
+    public function findAllOrdered(): array
+{
+    return $this->createQueryBuilder('p')
+        ->leftJoin('p.category', 'c')
+        ->addSelect('c')
+        ->orderBy('c.nameCategory', 'ASC')
+        ->getQuery()
+        ->getResult();
+}
 }

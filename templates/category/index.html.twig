@@ -1,48 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category index{% endblock %}
-
+{% block title %}Categories{% endblock %}
 {% block body %}
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="fw-bold">categories</h1>
-        <a class="btn btn-primary" href="{{ path('app_category_new') }}"> <span class="fs-5">+ </span>Create new</a>
-    </div>
-        <div class="alert alert-info">
-            Nombre de categories :<span class="fs-5" > {{ categories|length }} </span>
-        </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name_category</th>
-                <th>Description_category</th>
-                <th>Image</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+<div class="container mt-4">
+
+    <h1 class="mb-4 fw-bold">Categories</h1>
+
+    <div class="row">
         {% for category in categories %}
-            <tr>
-                <td>{{ category.id }}</td>
-                <td>{{ category.nameCategory }}</td>
-                <td>{{ category.descriptionCategory }}</td>
-                <td>
-                <img src="{{ asset('uploads/category/' ~ category.imageName) }}"  width="100">
-                </td>
-                <td>{{ category.updatedAt ? category.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_category_show', {'id': category.id}) }}">show</a>
-                    <a href="{{ path('app_category_edit', {'id': category.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-{% endblock %}
+            
+            <div class="col-md-4 mb-4">
 
+                <a href="{{ path('app_category_products', {'id': category.id}) }}"
+                   style="text-decoration:none; color:inherit;">
+
+                    <div class="card shadow-sm h-100 category-card">
+
+                        <img src="{{ asset('uploads/category/' ~ category.imageName) }}"
+                             class="card-img-top"
+                             style="height:200px; object-fit:cover;">
+
+                        <div class="card-body text-center">
+                            <h5 class="fw-bold">
+                                {{ category.nameCategory }}
+                            </h5>
+                        </div>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

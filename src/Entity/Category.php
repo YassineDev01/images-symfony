@@ -114,4 +114,16 @@ class Category
         }
         return $this;
     }
+
+    
+
+    public function __toString(): string
+        {
+            return ($this->name ?? '') . ' ' . ($this->nameCategory ?? '');
+        
+        }
+
+
+
+
 }
