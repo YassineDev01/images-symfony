@@ -56,4 +56,6 @@ bin/console make:migration                       # Crée une migration après mo
 bin/console doctrine:migrations:migrate          # Exécute les migrations pour mettre à jour la base de données.
 bin/console doctrine:schema:update --force       # Met à jour le schéma de la base            directement (non recommandé en production).
 bin/console doctrine:fixtures:load               # Charge des données de test avec les fixtures.
+
+php bin/console tailwind:build --watch           # Lancer le tailwind.
 ```

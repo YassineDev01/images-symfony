@@ -30,7 +30,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('CassandreV1');
+            ->setTitle('Admin Dashboard');
     }
 
     public function configureCrud(): Crud
