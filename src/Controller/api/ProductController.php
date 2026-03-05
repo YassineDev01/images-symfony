@@ -45,4 +45,26 @@ public function show(
     return $this->json($data);
 
 }
+
+#[Route('/{id}/images', name: 'product_images', methods: ['GET'])]
+public function images(
+    int $id,
+    ProductRepository $productRepository
+
+): JsonResponse {
+    $product = $productRepository->find($id);
+    if (!$product) {
+        return $this->json(['error' => 'Product not found'], 404);
+    }
+    $images = [];
+    foreach ($product->getProductImages() as $image) {
+        $images[] = '/uploads/product_images/' . $image->getImageName();
+    }
+    return $this->json($images);
+
+
+
+
 }
+}
+

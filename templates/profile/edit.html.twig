@@ -1,0 +1,44 @@
+<h2 class="mb-4">Modifier Profil</h2>
+
+{# Messages flash error #}
+{% for message in app.flashes('error') %}
+    <div class="alert alert-danger">
+        {{ message }}
+    </div>
+{% endfor %}
+
+{# Messages flash success #}
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+
+{{ form_start(form) }}
+
+<div class="mb-3">
+    {{ form_label(form.nom, 'Nom') }}
+    {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+    {{ form_errors(form.nom) }}
+</div>
+
+<div class="mb-3">
+    {{ form_label(form.prenom, 'Prénom') }}
+    {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+    {{ form_errors(form.prenom) }}
+</div>
+
+<div class="mb-3">
+    {{ form_label(form.adress, 'Adresse') }}
+    {{ form_widget(form.adress, {'attr': {'class': 'form-control'}}) }}
+    {{ form_errors(form.adress) }}
+</div>
+
+
+<div class="mb-3">
+    {{ form_label(form.image, 'Image de profil') }}
+    {{ form_widget(form.image, {'attr': {'class': 'form-control'}}) }}
+    {{ form_errors(form.image) }}
+</div>
+
+{{ form_end(form) }}

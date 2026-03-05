@@ -1,6 +1,4 @@
-# Symfony Cheat Sheet - Cassandre User
-
-Toutes les commandes utiles pour développement et production Symfony.
+## Les commandes utiles pour développement et production Symfony.
 
 ```bash
 # =========================

@@ -1,0 +1,29 @@
+<h2 class="text-xl font-semibold mb-4">Informations personnelles</h2>
+
+{% for flash_message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ flash_message }}
+    </div>
+{% endfor %}
+
+<ul class="list-unstyled mb-3 text-lg">
+    <li class="mb-4"><strong>Nom :</strong> {{ app.user.nom }}</li>
+    <li class="mb-4"><strong>Prénom :</strong> {{ app.user.prenom }}</li>
+    <li class="mb-4"><strong>Email :</strong> {{ app.user.email }}</li>
+    <li class="mb-4"><strong>Adresse :</strong> {{ app.user.adress }}</li>
+    <li class="mb-4"><strong>Date d'inscription :</strong> {{ app.user.createdAt|date('d/m/Y H:i') }}</li>
+    <li class="mb-4"><strong>Dernière mise à jour :</strong> {{ app.user.updatedAt|date('d/m/Y H:i') }}</li>
+
+        
+
+
+
+    <li>
+        <strong>Rôles :</strong>
+        <ul>
+            {% for role in app.user.roles %}
+                <li>{{ role }}</li>
+            {% endfor %}
+        </ul>
+    </li>
+</ul>

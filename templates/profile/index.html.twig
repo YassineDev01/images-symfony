@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile {{ app.user.prenom }} {{ app.user.nom }}{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+    <div class="row min-vh-100">
+
+        <!-- Sidebar -->
+        <div class="col-md-3 col-lg-2 bg-light border-end p-4 text-center">
+
+            <h4 class="mb-4">Mon Profil</h4>
+
+            <!-- Image -->
+            {% if app.user.image %}
+    <img src="{{ asset('uploads/' ~ app.user.image) }}"
+         class="img-thumbnail rounded-circle"
+         width="120">
+{% else %}
+    <i class="bi bi-person-circle fs-1"></i>
+{% endif %}
+
+            <!-- Menu -->
+            <div class="list-group mt-3">
+
+                <a href="{{ path('profile_view') }}"
+                   class="list-group-item list-group-item-action {{ app.request.get('_route') == 'profile_view' ? 'active' : '' }}">
+                    Voir Profil
+                </a>
+
+                <a href="{{ path('profile_edit') }}"
+                   class="list-group-item list-group-item-action {{ app.request.get('_route') == 'profile_edit' ? 'active' : '' }}">
+                    Modifier Profil
+                </a>
+
+                <a href="{{ path('profile_change_password') }}"
+                   class="list-group-item list-group-item-action {{ app.request.get('_route') == 'profile_change_password' ? 'active' : '' }}">
+                    Changer Mot de Passe
+                </a>
+
+                <a href="{{ path('profile_change_email') }}"
+                   class="list-group-item list-group-item-action {{ app.request.get('_route') == 'profile_change_email' ? 'active' : '' }}">
+                    Changer Email
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- Contenu -->
+        <div class="col-md-9 col-lg-10 p-4">
+
+            <h1 class="mb-4">Bienvenue, {{ app.user.prenom }} !</h1>
+
+            <div class="card shadow-sm">
+                <div class="card-body">
+
+                    {% if content_template is defined %}
+                        {% include content_template %}
+                    {% endif %}
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

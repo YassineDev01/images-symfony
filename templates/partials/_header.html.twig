@@ -1,79 +1,103 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm py-3 mb-">
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
     <div class="container-fluid">
 
-        <a class="navbar-brand" href="{{ path('app_home') }}">Produits</a>
+        <!-- Logo -->
+        <a class="navbar-brand fw-bold" href="{{ path('app_home') }}">
+            Marmiton
+        </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarNav">
+        <!-- Burger -->
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarContent">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- Menu -->
+        <div class="collapse navbar-collapse" id="navbarContent">
 
+            <!-- Left menu -->
             <ul class="navbar-nav me-auto">
+
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_home') }}">
-                        Home
-                    </a>
+                    <a class="nav-link" href="{{ path('app_home') }}">Home</a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_product_index') }}">
-                        Plats
-                    </a>
+                    <a class="nav-link" href="{{ path('app_product_index') }}">Plats</a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_category_index') }}">
-                        Caregories
-                    </a>
+                    <a class="nav-link" href="{{ path('app_category_index') }}">Catégories</a>
                 </li>
-                
+
             </ul>
 
-            <ul class="navbar-nav">
+            <!-- Right menu -->
+            <ul class="navbar-nav align-items-center">
 
                 {% if app.user %}
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-        </ul>
 
+                    <li class="nav-item dropdown">
 
-                    <li class="nav-item">
-                        <span class="nav-link">
-                            Bonjour {{ app.user.email }}
-                        </span>
-                    </li>
+                        <a class="nav-link dropdown-toggle d-flex align-items-center"
+                           href="#"
+                           data-bs-toggle="dropdown">
 
-                    {% if 'ROLE_ADMIN' in app.user.roles %}
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-warning text-white me-2 bg-warning"
-                            href="{{ path('admin') }}">
-                                Dashboard
-                            </a>
-                        </li>
-                        
-                    {% endif %}
+                            <!-- Image -->
+                            {% if app.user.image %}
+                                <img src="{{ asset('uploads/' ~ app.user.image) }}"
+                                     class="rounded-circle me-2"
+                                     width="35"
+                                     height="35">
+                            {% else %}
+                                <i class="bi bi-person-circle fs-3 me-2"></i>
+                            {% endif %}
 
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-danger text-white ms-2 bg-danger"
-                        href="{{ path('app_logout') }}">
-                            Déconnexion
+                            {{ app.user.prenom }}
                         </a>
+
+                        <ul class="dropdown-menu dropdown-menu-end">
+
+                            <li>
+                                <a class="dropdown-item" href="{{ path('profile_view') }}">
+                                <i class="bi bi-person-circle"></i>
+                                    Mon Profil
+                                </a>
+                            </li>
+
+                            {% if 'ROLE_ADMIN' in app.user.roles %}
+                                <li>
+                                    <a class="dropdown-item text-warning" href="{{ path('admin') }}">
+                                    <i class="bi bi-speedometer2 me-1"></i>
+                                    Dashboard
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                            <li><hr class="dropdown-divider"></li>
+
+                            <li>
+                                <a class="dropdown-item text-danger" href="{{ path('app_logout') }}">
+                                <i class="bi bi-box-arrow-right me-1"></i>
+                                    Déconnexion
+                                </a>
+                            </li>
+
+                        </ul>
+
                     </li>
 
                 {% else %}
 
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-primary text-white me-2 bg-primary"
-                        href="{{ path('app_login') }}">
+                    <li class="nav-item me-2">
+                        <a class="btn btn-outline-primary" href="{{ path('app_login') }}">
                             Connexion
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link btn btn-success text-white bg-success"
-                        href="{{ path('app_register') }}">
+                        <a class="btn btn-success" href="{{ path('app_register') }}">
                             Inscription
                         </a>
                     </li>
