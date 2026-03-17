@@ -3,16 +3,31 @@
 namespace App\Mapping;
 
 use App\Entity\Product;
+use Symfony\Component\HttpFoundation\UrlHelper;
+use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 class ProductMapping
 {
-    public function mapProductToDTO(Product $product): array
+   public function __construct(
+        private readonly UploaderHelper $uploaderHelper,
+        private readonly UrlHelper $urlHelper,
+        ) {
+    }
+public function mapProductToDTO(Product $product): array
     {
+        
         $images = [];
 
         foreach ($product->getProductImages() as $image) {
-            $images[] = '/uploads/product_images/' . $image->getImageName();
+             $path = $this->uploaderHelper->asset($image, 'imageFile') ;
+             if ($path){
+                $images[]= $this->urlHelper->getAbsoluteUrl($path);
+
+             }
+           
         }
+
+
 
         return [
             'id' => $product->getId(),

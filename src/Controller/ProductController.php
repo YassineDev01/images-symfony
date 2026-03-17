@@ -12,15 +12,33 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\ProductImage;
 
+use Knp\Component\Pager\PaginatorInterface;
+
+
 
 #[Route('/product')]
 final class ProductController extends AbstractController
 {
     #[Route(name: 'app_product_index', methods: ['GET'])]
-    public function index(ProductRepository $productRepository): Response
+    public function index(ProductRepository $productRepository, Request $request, PaginatorInterface $paginator): Response
     {
+
+
+    $qury = $productRepository->createQueryBuilder('p')
+        ->leftJoin('p.productImages', 'i')
+        ->addSelect('i')
+        ->getQuery();
+
+        $products = $paginator->paginate(
+            $qury,
+            $request->query->getInt('page', 1), // page number
+
+            5 // limit 
+        );
+
+
         return $this->render('product/index.html.twig', [
-            'products' => $productRepository->findAllWithImages(),
+            'products' => $products,
         ]);
     }
 
