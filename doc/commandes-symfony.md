@@ -56,4 +56,7 @@ bin/console doctrine:schema:update --force       # Met à jour le schéma de la 
 bin/console doctrine:fixtures:load               # Charge des données de test avec les fixtures.
 
 php bin/console tailwind:build --watch           # Lancer le tailwind.
+
+php bin/phpunit --testdox                        # Pour les tests
+php bin/phpunit --filter nom de la function      # Test + nom function
 ```
