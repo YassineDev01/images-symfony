@@ -1,7 +1,6 @@
 <?php
 
 use App\Entity\Category;
-use Doctrine\DBAL\Types\DateImmutableType;
 use PHPUnit\Framework\TestCase;
 
 class CategoryTest extends TestCase

@@ -57,6 +57,15 @@ bin/console doctrine:fixtures:load               # Charge des données de test a
 
 php bin/console tailwind:build --watch           # Lancer le tailwind.
 
-php bin/phpunit --testdox                        # Pour les tests
-php bin/phpunit --filter nom de la function      # Test + nom function
+# =======================
+# Tests
+# =======================
+php bin/phpunit --testdox                              # Pour les tests
+php bin/phpunit --filter nom de la function            # Test + nom function
+php bin/console d:d:d --force --if-exists --env=test   # Supprime la BDD si elle existe   
+php bin/console d:d:c --env=test                       # Créer une BDD
+php bin/console d:m:m --no-interaction --env=test      # Créer les migrations
+php bin/console d:f:l --no-interaction --env=test      # Créer les fixtures
+php bin/phpunit --testdox tests/Unit/                  # Execute les test unitaire
+php bin/phpunit --testdox tests/Functional/            # Execute les test fonctionnel
 ```

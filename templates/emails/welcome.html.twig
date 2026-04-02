@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Styles CSS avec couleurs vives */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff6ec7, #6effa1); /* fond vif dégradé */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            text-decoration: underline;
+            color: #ffdd00; /* couleur vive pour le texte */
+            text-shadow: 2px 2px 5px #00000050; /* petit effet d’ombre */
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        /* effet au survol */
+        h1:hover {
+            transform: scale(1.1);
+            color: #00ffff; /* change la couleur au hover */
+        }
+    </style>
+</head>
+<body>
+
+<h1>
+    Hello {{ contact.nom }}
+</h1>
+
+</body>
+</html>
